@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }).start();
             }
+
             Handler handler = new Handler(){
                 @Override
                 public void handleMessage(@NonNull Message msg) {

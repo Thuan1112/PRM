@@ -25,24 +25,24 @@ public class CreateSMSActivity extends AppCompatActivity {
         editContent = findViewById(R.id.editContent);
     }
 
-    public void clickToSend(View view) {
-        String phone = editPhone.getText().toString();
-        String content = editContent.getText().toString();
-        SmsManager smsManager = SmsManager.getDefault();
-        Intent intent = new Intent( "ThuanNL_Send_SMS");
-        PendingIntent pending = PendingIntent.getBroadcast( this, 0, intent, 0);
-        registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                int result = getResultCode();
-                String mess = "Send OK";
-                if (result != Activity.RESULT_OK){
-                    mess = "Send Fail";
+        public void clickToSend(View view) {
+            String phone = editPhone.getText().toString();
+            String content = editContent.getText().toString();
+            SmsManager smsManager = SmsManager.getDefault();
+            Intent intent = new Intent( "ThuanNL_Send_SMS");
+            PendingIntent pending = PendingIntent.getBroadcast( this, 0, intent, 0);
+            registerReceiver(new BroadcastReceiver() {
+                @Override
+                public void onReceive(Context context, Intent intent) {
+                    int result = getResultCode();
+                    String mess = "Send OK";
+                    if (result != Activity.RESULT_OK){
+                        mess = "Send Fail";
+                    }
+                    Toast.makeText(CreateSMSActivity.this, mess, Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(CreateSMSActivity.this, mess, Toast.LENGTH_LONG).show();
-            }
-        }, new IntentFilter("ThuanNL_Send_SMS"));
-        smsManager.sendTextMessage(phone, null, content, pending, null);
-        finish();
-    }
+            }, new IntentFilter("ThuanNL_Send_SMS"));
+            smsManager.sendTextMessage(phone, null, content, pending, null);
+            finish();
+        }
 }

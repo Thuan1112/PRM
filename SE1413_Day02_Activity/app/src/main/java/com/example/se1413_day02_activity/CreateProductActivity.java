@@ -10,6 +10,7 @@ import android.widget.EditText;
 public class CreateProductActivity extends AppCompatActivity {
 
     private EditText editID, editName, editPrice;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
